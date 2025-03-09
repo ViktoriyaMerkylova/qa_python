@@ -31,8 +31,15 @@ class TestBooksCollector:
         collector.set_book_genre(horror_book, drama_ganre)
         assert collector.books_genre.get(horror_book) != drama_ganre
 
-    #5.Позитивный сценарий: поиск книги по жанру
+    #5.Позитивный сценарий: поиск жанра по ее книге
     def test_get_book_genre_existing_book(self, collector):
         collector.add_new_book(horror_book)
         collector.set_book_genre(horror_book, horror_ganre)
         assert collector.get_books_with_specific_genre(horror_ganre) == [horror_book]
+
+    # 6.Книга существует, но жанр не установлен
+    def test_get_book_genre_unset_genre(self, collector):
+        collector.add_new_book(horror_book)
+        assert collector.get_book_genre(horror_book) == ''
+
+
