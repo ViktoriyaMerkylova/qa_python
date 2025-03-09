@@ -1,6 +1,5 @@
 import pytest
 from conftest import horror_book, horror_ganre, drama_ganre
-from main import BooksCollector
 
 
 # класс TestBooksCollector объединяет набор тестов, которыми мы покрываем наше приложение BooksCollector
