@@ -68,8 +68,9 @@ class TestBooksCollector:
         assert horror_book in collector.get_list_of_favorites_books()
 
     # 9.Удаление книги из избранного
-    def test_delete_book_positive_scenario (self, collector):
+    def test_delete_book_positive_scenario(self, collector):
         collector.add_new_book(horror_book)
         collector.add_book_in_favorites(horror_book)
-        collector.delete_book_favorites(horror_book)
+        collector.delete_book_from_favorites(horror_book)
         assert collector.get_list_of_favorites_books() == []
+
