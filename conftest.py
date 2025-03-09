@@ -7,4 +7,5 @@ def collector():
     collector = BooksCollector()
     return collector
 
-non_book = 'Сияние'
+horror_book = 'Сияние'
+horror_ganre = 'Ужасы'
