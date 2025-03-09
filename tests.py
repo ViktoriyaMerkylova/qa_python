@@ -1,5 +1,5 @@
 import pytest
-from conftest import horror_book, horror_ganre
+from conftest import horror_book, horror_ganre, drama_ganre
 from main import BooksCollector
 
 
@@ -26,4 +26,7 @@ class TestBooksCollector:
         assert collector.books_genre[horror_book] == horror_ganre
 
     #4.Негативный сценарий: жанр не входит в список
-    def test_set_book_genre_not_in_list (self)
+    def test_set_book_genre_not_in_list(self, collector):
+        collector.add_new_book(horror_book)
+        collector.set_book_genre(horror_book, drama_ganre)
+        assert collector.books_genre.get(horror_book) != drama_ganre

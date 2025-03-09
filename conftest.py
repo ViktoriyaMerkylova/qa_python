@@ -9,3 +9,4 @@ def collector():
 
 horror_book = 'Сияние'
 horror_ganre = 'Ужасы'
+drama_ganre = 'Драма'
