@@ -42,4 +42,34 @@ class TestBooksCollector:
         collector.add_new_book(horror_book)
         assert collector.get_book_genre(horror_book) == ''
 
+    # 7.Проверка исключения книг с возратсным рейтингом
+    @pytest.mark.parametrize (
+        "book_name,book_genre,expected_result",
+        [
+    ("Приключения пушистого облака", "Мультфильмы", True),
+    ("Невинный шёпот мёртвых", "Детективы", False),
+    ("Дракоша в городском Парке", "Фантастика", True),
+    ("Тёмная комната свидетеля", "Ужасы", False)
+        ]
+    )
+    def test_get_books_for_children_valid_books(self, collector, book_name,book_genre, expected_result):
+        collector.add_new_book(book_name)
+        collector.set_book_genre(book_name, book_genre)
+        books_for_children = collector.get_books_for_children()
+        if expected_result:
+            assert book_name in books_for_children
+        else:
+            assert book_name not in books_for_children
 
+    # 8.Добавление в избранное
+    def test_add_book_in_favorites_success(self, collector):
+        collector.add_new_book(horror_book)
+        collector.add_book_in_favorites(horror_book)
+        assert horror_book in collector.get_list_of_favorites_books()
+
+    # 9.Удаление книги из избранного
+    def test_delete_book_positive_scenario (self, collector):
+        collector.add_new_book(horror_book)
+        collector.add_book_in_favorites(horror_book)
+        collector.delete_book_favorites(horror_book)
+        assert collector.get_list_of_favorites_books() == []
