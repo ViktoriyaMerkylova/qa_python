@@ -11,6 +11,6 @@
 | ```get_books_for_children```|7.Проверка исключения книг с возратсным рейтингом.|```test_get_books_for_children_valid_books``` |
 | ```add_book_in_favorites```|8.Добавление в избранное. | ```test_add_book_in_favorites_success``` |
 | ```delete_book_from_favorites```| 9.Удаление книги из избранного.| ```test_delete_book_positive_scenario``` |
-| ```get_list_of_favorites_books```| 10. Получение пустого списка избранных| ```test_get_empty_favorites_books_list``` |
+| ```get_list_of_favorites_books```| 10. Получение пустого списка избранных| ```test_get_list_of_favorites_books_list``` |
 
 

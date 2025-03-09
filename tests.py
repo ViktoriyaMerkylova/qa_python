@@ -74,7 +74,7 @@ class TestBooksCollector:
         assert collector.get_list_of_favorites_books() == []
 
     #10. Получение пустого списка избранных
-    def test_get_empty_favorites_books_list(self, collector):
+    def test_get_list_of_favorites_book_list(self, collector):
         assert collector.get_list_of_favorites_books() == []
 
 
