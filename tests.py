@@ -34,7 +34,9 @@ class TestBooksCollector:
     def test_get_book_genre_existing_book(self, collector):
         collector.add_new_book(horror_book)
         collector.set_book_genre(horror_book, horror_genre)
-        assert collector.get_books_with_specific_genre(horror_genre) == [horror_book]
+        collector.add_new_book(drama_book)
+        collector.set_book_genre(drama_book, drama_genre)
+        assert collector.get_book_genre(horror_book) == horror_genre
 
     # 6. выводит список книг с определённым жанром.
     def test_get_books_with_specific_genre_existing_book(self, collector):
