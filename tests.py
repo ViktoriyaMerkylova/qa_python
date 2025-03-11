@@ -1,5 +1,5 @@
 import pytest
-from conftest import horror_book, horror_genre, drama_genre
+from conftest import horror_book, horror_genre, drama_genre, drama_book
 
 
 # класс TestBooksCollector объединяет набор тестов, которыми мы покрываем наше приложение BooksCollector
@@ -75,8 +75,13 @@ class TestBooksCollector:
         collector.delete_book_from_favorites(horror_book)
         assert collector.get_list_of_favorites_books() == []
 
-    #10. Получение пустого списка избранных
+    #10. Получает список избранных книг.
     def test_get_list_of_favorites_book_list(self, collector):
-        assert collector.get_list_of_favorites_books() == []
+        collector.add_new_book(horror_book)
+        collector.add_new_book(drama_book)
+        collector.add_book_in_favorites(horror_book)
+        collector.add_book_in_favorites(drama_book)
+        favorites = collector.get_list_of_favorites_books()
+        assert len(favorites) == 2
 
 
