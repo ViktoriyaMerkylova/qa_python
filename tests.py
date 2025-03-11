@@ -1,5 +1,5 @@
 import pytest
-from conftest import horror_book, horror_ganre, drama_ganre
+from conftest import horror_book, horror_genre, drama_genre
 
 
 # класс TestBooksCollector объединяет набор тестов, которыми мы покрываем наше приложение BooksCollector
@@ -21,25 +21,27 @@ class TestBooksCollector:
     # 3.Присвоение книги жанра
     def test_set_book_genre_valid_inputs(self, collector):
         collector.add_new_book(horror_book)
-        collector.set_book_genre(horror_book, horror_ganre)
-        assert collector.books_genre[horror_book] == horror_ganre
+        collector.set_book_genre(horror_book, horror_genre)
+        assert collector.books_genre[horror_book] == horror_genre
 
     #4.Добавление жанра, который не входит в список
     def test_set_book_genre_not_in_list(self, collector):
         collector.add_new_book(horror_book)
-        collector.set_book_genre(horror_book, drama_ganre)
-        assert collector.books_genre.get(horror_book) != drama_ganre
+        collector.set_book_genre(horror_book, drama_genre)
+        assert collector.books_genre.get(horror_book) != drama_genre
 
     #5.Поиск жанра по ее книге.
     def test_get_book_genre_existing_book(self, collector):
         collector.add_new_book(horror_book)
-        collector.set_book_genre(horror_book, horror_ganre)
-        assert collector.get_books_with_specific_genre(horror_ganre) == [horror_book]
+        collector.set_book_genre(horror_book, horror_genre)
+        assert collector.get_books_with_specific_genre(horror_genre) == [horror_book]
 
-    # 6.Книга существует, но жанр не установлен.
+    # 6. выводит список книг с определённым жанром.
     def test_get_books_with_specific_genre_existing_book(self, collector):
         collector.add_new_book(horror_book)
-        assert collector.get_book_genre(horror_book) == ''
+        collector.set_book_genre(horror_book, horror_genre)
+        books_with_genre = collector.get_books_with_specific_genre(horror_genre)
+        assert books_with_genre[0] == horror_book
 
     # 7.Проверка исключения книг с возратсным рейтингом.
     @pytest.mark.parametrize (
@@ -51,7 +53,7 @@ class TestBooksCollector:
     ("Тёмная комната свидетеля", "Ужасы", False)
         ]
     )
-    def test_get_books_for_children_valid_books(self, collector, book_name,book_genre, expected_result):
+    def test_get_books_for_children_valid_books(self, collector, book_name, book_genre, expected_result):
         collector.add_new_book(book_name)
         collector.set_book_genre(book_name, book_genre)
         books_for_children = collector.get_books_for_children()
